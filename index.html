@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0020)http://suresale.com/ -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SureSale | Check, Inspect, and Protect your Used Vehicle</title>
+    <meta name="Description" content="Buying or selling a used car? Make sure it comes with a clean history report, inspection, and a warranty to cover costly breakdowns.">
+<!--    <link href="https://suresale.com/img/front/favicon-2.ico" type="image/x-icon" rel="icon">-->
+    <link rel="stylesheet" type="text/css" href="./index_files/style.css">
+    <script type="text/javascript" async="" src="./index_files/conversion_async.js.download"></script>
+    <script type="text/javascript" async="" src="./index_files/analytics.js.download"></script>
+    <script async="" src="./index_files/gtm.js.download"></script>
+    <script type="text/javascript" src="./index_files/jquery-1.10.2.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./index_files/search_style.css">
+    <script>
+        $(document).ready(function () {
+            $('#vehicle-check').click(function () {
+                $('.vehicleStags').hide();
+                $('.checkUncheck-list li').removeClass('active');
+                $(this).addClass('active');
+                $('#panel-check').show();
+            });
+            $('#vehicle-inspt').click(function () {
+                $('.vehicleStags').hide();
+                $('.checkUncheck-list li').removeClass('active');
+                $(this).addClass('active');
+                $('#panel-inspect').show();
+            });
+            $('#vehicle-prtct').click(function () {
+                $('.vehicleStags').hide();
+                $('.checkUncheck-list li').removeClass('active');
+                $(this).addClass('active');
+                $('#panel-protect').show();
+            });
+            jQuery("#showlogin").click(function () {
+                jQuery(".login-section-outer").slideToggle("slow");
+                jQuery('#backgroundPopup').fadeOut();
+                jQuery('#forgotPassword').fadeOut();
+            });
+            jQuery(".sign-in-btn").click(function () {
+                jQuery("#FormLogin").submit();
+            });
+            jQuery('.forgotPassword').click(function () {
+                jQuery(".login-section-outer").slideToggle("slow");
+                jQuery('#forgotPassword').show();
+                jQuery('#backgroundPopup').show();
+                jQuery('#page').hide();
+                jQuery('.blue_banner').hide();
+                jQuery('.banner_content_main').hide();
+                jQuery('.order-center-right-outer').hide();
+            });
+            jQuery('.pop-close1').click(function () {
+                jQuery('#backgroundPopup').fadeOut();
+                jQuery('#forgotPassword').fadeOut();
+                jQuery('#page').show();
+                jQuery('.blue_banner').show();
+                jQuery('.banner_content_main').show();
+                jQuery('.order-center-right-outer').show();
+            });
+            //jQuery('#search_link').click(function(){
+            jQuery('#search_from').submit(function () {
+                var search_key = jQuery('#search_elem').val();
+                if (search_key == '') {
+                    jQuery('#search_elem').focus();
+                    return false;
+                }
+                jQuery('#search_from').attr('action', '/marketplace/keyword-' + search_key);
+                jQuery('#search_from').submit();
+            });
+            jQuery('#search_link').click(function () {
+                jQuery('#search_from').submit();
+            });
+            jQuery("#sendemail").submit(function (e) {
+                e.preventDefault();
+                var note = document.getElementById("note").value;
+                var name = document.getElementById("name").value;
+                if (name == "") {
+                    alert("Please Enter Name");
+                    jQuery("#name").focus();
+                    return;
+                }
+                var email = document.getElementById("email").value;
+                PAEmail_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if (email == "") {
+                    alert("Please Enter The Email Id");
+                    jQuery("#email").focus();
+                    return;
+                }
+                else if (!PAEmail_regex.test(email)) {
+                    alert("Please Enter Valid Email Id");
+                    jQuery("#email").focus();
+                    return false;
+                }
+                var phone = document.getElementById("phone").value;
+                if (isNaN(phone)) {
+                    alert("Please Enter Number only For Phone Number.");
+                    jQuery("#phone").focus();
+                    return;
+                }
+                var ur = window.location.href;
+                var dataString = "name=" + name + "&email=" + email + "&phone=" + phone + "&note=" + note;
+                document.getElementById('txtHint2').style.display = 'block';
+                document.getElementById("txtHint1").innerHTML = '<div style="display:block;  text-align:center; width:100%;"><img src="/img/ajax-loader.gif" style="text-align:center;" width="20"></div>';
+                $.ajax({
+                    type: "POST"
+                    , url: "/homes/contact_form"
+                    , data: dataString
+                    , cache: false
+                    , success: function (data) {
+                        if (data == 1) {
+                            document.getElementById("txtHint1").innerHTML = "Mail sent successfully."
+                            jQuery("#name").val("");
+                            jQuery("#email").val("");
+                            jQuery("#phone").val("");
+                            jQuery('#note').val("");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!--Wrapper-->
+    <section id="wrapper" class="checkout-wrapper" style="overflow: hidden;">
+        <div class="wait" id="wait"><img src="./index_files/ajax.gif"></div>
+        <script>
+            $(document).ready(function () {
+                $('.list-reqrnmnts').click(function () {
+                    $('#find-VIN-pop').fadeTo('1000', '1');
+                    $('.overlay').fadeTo('1000', '.7');
+                });
+                $('.pop-close').click(function () {
+                    $('#find-VIN-pop, .overlay').fadeTo('1000', '0').hide();
+                });
+                $('.nav-link').bind('click', function () {
+                    if($(this).attr('id')!=="nav-close") {
+                        if($(window).width()>769){
+                            $('.sidebar-nav').animate({right: '0'});
+                            $('.right-header').animate({'padding-right': '100px'}, 500);
+                        } else {
+                            $(this).attr('id', 'nav-close');
+                            $('.sidebar-nav').stop().animate({left: '0'}, 300);
+                            $('.right-header').stop().animate({'padding-left': '80' + '%'}, 300);   
+                            $('.navOverlay').removeClass('hidden');
+                        }
+                    } else {
+                        if($(window).width()>769){
+                            $('.sidebar-nav').animate({right: '-225px'}, 500);
+                            $('.right-header').animate({'padding-right': '0'}, 500);
+                        } else {
+                            $('.sidebar-nav').stop().animate({left: '-80' + '%'}, 500);
+                            $('.right-header').stop().animate({'padding-left': '0'}, 500);
+                            $(this).removeAttr('id'); 
+                            $('.navOverlay').addClass('hidden');                        
+                        }
+                    }
+                    
+                });
+                
+                $('#nav-close').bind('click', function () {
+                    if($(window).width()>769){
+                        $('.sidebar-nav').animate({right: '-225px'}, 500);
+                        $('.right-header').animate({'padding-right': '0'}, 500);
+                    } else {
+                        $('.sidebar-nav').stop().animate({left: '-80' + '%'}, 500);
+                        $('.right-header').stop().animate({'padding-left': '0'}, 500);
+                        $(this).removeAttr('id');    
+                        $('.navOverlay').addClass('hidden');                     
+                    }
+                });
+                $('#vehicle-check').click(function () {
+                    $('.vehicleStags').hide();
+                    $('.checkUncheck-list li').removeClass('active');
+                    $(this).addClass('active');
+                    $('#panel-check').show();
+                });
+                $('#vehicle-inspt').click(function () {
+                    $('.vehicleStags').hide();
+                    $('.checkUncheck-list li').removeClass('active');
+                    $(this).addClass('active');
+                    $('#panel-inspect').show();
+                });
+                $('#vehicle-prtct').click(function () {
+                    $('.vehicleStags').hide();
+                    $('.checkUncheck-list li').removeClass('active');
+                    $(this).addClass('active');
+                    $('#panel-protect').show();
+                });
+                jQuery("#showlogin").click(function () {
+                    jQuery('.jqTransformSelectWrapper').attr('style', 'width:100%;');
+                    jQuery(".login-section-outer2").slideToggle("slow");
+                    jQuery('#backgroundPopup').fadeOut();
+                    jQuery('#forgotPassword').fadeOut();
+                });
+                jQuery(".sign-in-btn").click(function () {
+                    jQuery("#FormLogin").submit();
+                });
+                /*jQuery('#openContactForm').click(function(e){
+                	e.preventDefault();
+                	$('#contactFrm').slideToggle('slow');
+                	$('#open').hide();
+                });*/
+                jQuery('.forgotPassword').click(function () {
+                    jQuery(".login-section-outer2").slideToggle("slow");
+                    jQuery('#forgotPassword').show();
+                    jQuery('#backgroundPopup').show();
+                    jQuery('#page').hide();
+                    jQuery('.blue_banner').hide();
+                    jQuery('.banner_content_main').hide();
+                    jQuery('.order-center-right-outer').hide();
+                });
+                jQuery('.pop-close').click(function () {
+                    jQuery('#backgroundPopup').fadeOut();
+                    jQuery('#forgotPassword').fadeOut();
+                    jQuery('#page').show();
+                    jQuery('.blue_banner').show();
+                    jQuery('.banner_content_main').show();
+                    jQuery('.order-center-right-outer').show();
+                });
+                /*jQuery('#closeContactForm').click(function(e){
+                	e.preventDefault();
+                	$('#contactFrm').slideToggle('slow');
+                	$('#open').show();
+                });*/
+                jQuery('#search_link').click(function () {
+                    var search_key = jQuery('#search_elem').val();
+                    if (search_key == '') {
+                        jQuery('#search_elem').focus();
+                        return false;
+                    }
+                    jQuery('#search_from').attr('action', '/marketplace/keyword-' + search_key);
+                    jQuery('#search_from').submit();
+                });
+                
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                   $('html').addClass('isMobile');
+                } else {
+                   $('html').removeClass('isMobile'); 
+                }
+                
+                $(window).on('load resize', function(){checkMobile()});
+                function checkMobile(){
+                  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                     $('html').addClass('isMobile');
+                  } else {$('html').removeClass('isMobile')}
+                }
+                
+            });
+        </script>
+        <header class="header">
+            <!--Container-->
+            <section class="container">
+                <nav class="right-header visible-xs pull-left">
+                    <ul>
+                        <li class="login-bg"><a href="javascript:void()" id="showlogin"></a>
+                            <div class="nav-link"><span></span><span></span><span></span></div>
+                        </li>
+                    </ul>
+                    <form action="http://suresale.com/users/login" method="post" id="FormLogin" class="login" accept-charset="utf-8">
+                        <div style="display:none;">
+                            <input type="hidden" name="_method" value="POST">
+                        </div>
+                        <section class="login-section-outer2" style="display:none;">
+                            <section class="login-container">
+                                <section class="login-email">
+                                    <input name="data[User][username]" class="register-single-input validate[required] custom[email]" placeholder="Email" maxlength="255" type="text" id="UserUsername">
+                                    <input name="data[User][password]" class="validate[required]" placeholder="Password" type="password" id="UserPassword"> </section>
+                                <section style="color: #fff; font-size: 12px;">
+                                    <input type="radio" name="data[User][type]" value="d" checked="checked">Dealer
+                                    <input type="radio" name="data[User][type]" value="s">Private Party </section>
+                                <br>
+                                <section class="sign-in-section">
+                                    <section class="remember">
+                                        <input type="checkbox">
+                                        <p>Remember me</p>
+                                    </section>
+                                    <section class="sign-in-btn"> <a href="javascript:void(0);">Sign in</a> </section>
+                                    <section class="forgot-password-link"> <a class="forgotPassword" href="javascript:void(0);" style="color:#162e54">Forgot Your Password?</a> </section>
+                                </section>
+                            </section>
+                        </section>
+                    </form>
+                </nav>
+                <!--Logo-->
+                <h1 class="logo"><a href="http://suresale.com/" alt="SureSale" title="SureSale"><img src="./index_files/logo.png" alt=""></a></h1>
+                <!--./Logo-->
+                <!--Right Header-->
+                <div class="righthead-wrap">
+                    <nav class="right-header hidden-xs">
+                        <ul>
+                            <li><a href="https://suresale.com/marketplace">Marketplace</a></li>
+                            <li class="login-bg"><a href="javascript:void()" id="showlogin">LOGIN</a>
+                                <div class="nav-link"><span></span><span></span><span></span></div>
+                            </li>
+                        </ul>
+                        <form action="http://suresale.com/users/login" method="post" id="FormLogin" class="login" accept-charset="utf-8">
+                            <div style="display:none;">
+                                <input type="hidden" name="_method" value="POST">
+                            </div>
+                            <section class="login-section-outer2" style="display:none;">
+                                <section class="login-container">
+                                    <section class="login-email">
+                                        <input name="data[User][username]" class="register-single-input validate[required] custom[email]" placeholder="Email" maxlength="255" type="text" id="UserUsername">
+                                        <input name="data[User][password]" class="validate[required]" placeholder="Password" type="password" id="UserPassword"> </section>
+                                    <section style="color: #fff; font-size: 12px;">
+                                        <input type="radio" name="data[User][type]" value="d" checked="checked">Dealer
+                                        <input type="radio" name="data[User][type]" value="s">Private Party </section>
+                                    <br>
+                                    <section class="sign-in-section">
+                                        <section class="remember">
+                                            <input type="checkbox">
+                                            <p>Remember me</p>
+                                        </section>
+                                        <section class="sign-in-btn"> <a href="javascript:void(0);">Sign in</a> </section>
+                                        <section class="forgot-password-link"> <a class="forgotPassword" href="javascript:void(0);" style="color:#162e54">Forgot Your Password?</a> </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </form>
+                    </nav>
+                </div>
+                <!--./Right Header-->
+                <!--Main Navigation-->
+                <div class="sidebar-nav"> <a href="javascript:void()" class="hidden-xs" id="nav-close">Close</a>
+                    <ul>
+                        <li><a href="http://suresale.com/buyer-plans" alt="Buyers" title="Buyers"><img src="img/new/img/home.jpg" alt="" class="visible-xs"/> Home</a></li>
+                        <li><a href="http://suresale.com/seller-plans" alt="Sellers" title="Sellers">How it Works</a></li>
+                        <li><a href="http://suresale.com/dealers" alt="Dealers" title="Dealers">Login | Account</a></li>
+                        <li><a href="http://suresale.com/how-suresale-works" alt="How SureSale Works" title="How SureSale Works">Marketplace</a></li>
+                        <li><a href="http://suresale.com/get-a-used-vehicle-report" alt="Order CAReports" title="Order CAReports">Order CAReports</a></li>
+                    </ul>
+                </div>
+                <!--./Main Navigation-->
+            </section>
+            <!--./Container-->
+            <!--Right Header Background-->
+            <div class="rightheaderbg hidden-xs"></div>
+            <!--./Right Header Background-->
+        </header>
+        <div id="forgotPassword" class="viewads" style="width:515px; height:360px;">
+            <a href="http://suresale.com/#" class="pop-close"></a>
+            <h2>Account Login</h2>
+            <div class="suresale-dude"> <img src="./index_files/suresale_dude.png" alt="">
+                <h3 style="font-size: 33px; color: #B92228; padding-top: 20px; padding-left: 301px;">Forgot your<br>Password?</h3>
+                <p style="padding-top:30px;">Please enter your email address and we
+                    <br> will send it to you. <span style="font-weight:bold;">Thank You.</span>
+                    <input type="text" class="forgotfield" tabindex="1" id="forgot_email" placeholder="email address" name="data[email]"> <span class="errorMessage" style="display: none;font-size:15px;">Please enter valid email address.</span> <a style="background-color:#65AB52;border-radius: 5px; font-weight: bold; float: right; margin-right: 23px; padding: 2px 7px; margin-top: 0px;" class="submit-password-button" href="http://suresale.com/#">SEND</a> </p>
+            </div>
+        </div>
+        <section id="backgroundPopup" class="overlay-popup" style="display: none; opacity: 0.7;"></section>
+        <style type="text/css">
+            .popup-widget {
+                background: none repeat scroll 0 0 #fff;
+                border-radius: 8px;
+                color: #06375b;
+                left: 50%;
+                margin-left: -160px;
+                padding: 10px;
+                position: absolute;
+                top: 40%;
+                width: 400px;
+                z-index: 9999999;
+            }
+            
+            div.close {
+                background: url("../img/fancybox/fancy_close.png") no-repeat scroll 0 0 transparent;
+                cursor: pointer;
+                height: 30px;
+                position: absolute;
+                right: -18px;
+                top: -14px;
+                width: 30px;
+            }
+            
+            #backgroundPopup {
+                background: none repeat scroll 0 0 #000000;
+                display: none;
+                height: 100%;
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                opacity: 0.7;
+            }
+            
+            #forgotPassword input {
+                color: #000000;
+                height: 28px;
+                line-height: 28px;
+                margin-bottom: 15px;
+                margin-top: 20px;
+                padding: 0 5px;
+                width: 90%;
+            }
+            
+            .submit-password-button {
+                background: none repeat scroll 0 0 #b04320;
+                border: 2px solid #ffffff !important;
+                color: #ffffff;
+                cursor: pointer;
+                height: 38px;
+                line-height: 33px;
+                margin: 8px 0 0 8px;
+                overflow: visible;
+                padding: 4px;
+                text-align: center;
+                width: 83px;
+            }
+            
+            .errorMessage {
+                color: red;
+            }
+        </style>
+        <!--Banner-->
+        <section id="banner" class="hidden-xs">
+            <!--Container-->
+            <section class="container">
+                <h3>Get ready for the best car selling experience of your life!</h3>
+            </section>
+            <!--./Container-->
+        </section>
+        <!--./Banner-->
+        <!--We do the work-->
+        <section class="search-supermarket hidden-xs">
+            <!--Container-->
+            <section class="container">
+                <h3 class="text-right"><a href="#" class="get-startednow pull-left">get started now</a>We do the work so you don’t have to....</h3>
+                <div class="steps-wrap clearfix">
+                    <div class="steps">
+                        <div class="step-head clearfix">
+                            Create an account <br>+ your VIN
+                            <span class="step-num">1</span>
+                        </div>
+                        <p>Create an account and enter your VIN.  From there, we will determine if you vehicle is eligible for SureSale.  Typically a SureSale vehicle can be created in less than 15 minutes.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="step-head clearfix">
+                            Tel us about your <br>vehicle + photos
+                            <span class="step-num">2</span>
+                        </div>
+                        <p>Don’t worry, we will walk you through the process. We will need some basic information about your vehicle, like photos, mileage, etc. We will even help you price your vehicle.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="step-head clearfix headlineSingle">
+                            Let us do the selling
+                            <span class="step-num">3</span>
+                        </div>
+                        <p>Now we go to work selling your vehicle. We will advertise it online and even show it to local dealers. If you accept an offer, then we have a deal. If not, SureSale is no cost to you.</p>
+                    </div>
+                </div>
+            </section>
+            <!--./Container-->
+        </section>
+        <!--./We do the work-->
+        <!--Search in Supermarket-->
+        <section class="search-supermarket clearfix bg-light-blue hidden-xs">
+            <!--Container-->
+            <section class="container">
+                <span class="guarantee"><img src="img/new/img/guarantee.png" alt=""/></span>
+                <h3>Get started selling with SureSale</h3>
+                <form id="search_from" type="post">
+                    <div class="supersearchnew">
+                        <input type="text" placeholder="Enter VIN to Check Eligibility" id="search_elem">
+                        <input type="submit" style="width: 46px;" class="searchLink-supermrkt"> </div>
+                </form> <span class="list-reqrnmnts"><a href="#">Having trouble locating your VIN?  Click here.</a></span> 
+            </section>
+            <!--./Container-->
+        </section>
+        <!--./Search in Supermarket-->
+        <!--How It Works-->
+        <section class="howItWorks hidden-xs"> <img src="./index_files/lady_car.jpg" alt="" class="ladyCar">
+            <!--Container-->
+            <section class="container">
+                <a href="http://suresale.com/how-suresale-works" alt="How SureSale Works" title="How SureSale Works" class="howitworks-img"><img src="./index_files/how-works.png" alt=""></a>
+            </section>
+            <!--./Container-->
+        </section>
+        <!--./How It Works-->
+        
+        <!--Checkout Flow-->
+        <section id="checkout" class="visible-xs">
+            <div class="checkstep-wrap visible-xs stepswrap-index">
+                <section class="container steps-container">
+                    <div class="wizard small row">
+                        <a class="current"><span>Check <br>VIN</span></a>
+                        <a><span>Create <br>Account</span></a>
+                        <a><span>Details <br>&amp; Price</span></a>
+                        <a><span>Add <br>Photos</span></a>
+                        <a><span>Checkout</span></a>
+                    </div>
+                    
+                </section>
+            </div>
+            <div class="white-bg pad-top-25 pad-bot-25">
+                <!--Container-->
+                <section class="container text-center">
+                    <h3>Enter your VIN to get started</h3>
+                    <div class="enter-vin">
+                        <input type="text" placeholder="Enter VIN" class="clearfix">
+                        <button class="checkout-btn pull-right nopull-xs no-blockbtb"><img src="img/new/img/btn-check.jpg" alt=""/> </button>
+                    </div>
+                </section>
+                <!--./Container-->
+            </div>
+            <div class="pad-top-25">
+                <!--Container-->
+                <section class="container check-para">
+                    <h3 class="col-half">Where can I find my VIN number?</h3>
+                    <div class="col-half"><p>TITLE DOCUMENT<br>INSURANCE POLICY
+DRIVER’S SIDE DASHBOARD<br>
+DRIVER’S SIDE DOOR</p>
+                    </div>
+                    <p class="text-center pad-top-25 pad-bot-25">
+                        <img src="img/new/img/VIN_Car.jpg" alt="" class="vincar"/>
+                    </p>
+                </section>
+                <!--./Container-->
+            </div>
+            
+            
+            <div class="pad-top-25 visible-xs">
+                <!--Container-->
+                <section class="container">
+                    <h3 class="lightblue-head bg-light-blue text-uppercase headgrantee">
+                        <img src="img/new/img/guarantee.png" alt=""/>
+                        SureSale: It’s Sold or it’s Free</h3>
+                    <div class="soldfree-box">
+                        <span class="solnum-head"><span class="solnum">1</span>Check VIN and Create Account</span>
+                        <p>Create an account and enter your VIN.  From there, we will determine if you vehicle is eligible for SureSale.  Typically a SureSale vehicle can be created in less than 15 minutes.</p>
+                    </div>
+                    <div class="soldfree-box">
+                        <span class="solnum-head"><span class="solnum">2</span>Tell us about your vehicle + photos</span>
+                        <p>Don’t worry, we will walk you through the process.  We will need some basic information about your vehicle, like photos, mileage, etc.  We will even help you price your vehicle.</p>
+                    </div>
+                    <div class="soldfree-box">
+                        <span class="solnum-head"><span class="solnum">3</span>Let us do the selling</span>
+                        <p>Now we go to work selling your vehicle.  We will advertise it online and even show it to local dealers.  If you accept an offer, then we have a deal.  If not, SureSale is no cost to you.</p>
+                    </div>
+                </section>
+                <!--./Container-->
+            </div>
+            
+        </section>
+        <!--./Checkout Flow-->
+        <!--Footer-->
+        <script>
+            $(document).ready(function () {
+                jQuery('#open, #contact').click(function (e) {
+                    e.preventDefault();
+                    $('#contactFrm').slideToggle('slow');
+                    $('#open').hide();
+                });
+                $("#contact").click(function () {
+                    $('#wrapper').css('overflow', 'hidden');
+                    $('.sidebar-nav').animate({
+                        right: '-225px'
+                    }, 500);
+                    $('.right-header').animate({
+                        'padding-right': '0'
+                    }, 500);
+                    $("html, body").animate({
+                        scrollTop: $(document).height() - $(window).height()
+                    });
+                    return false;
+                });
+                jQuery('#closeContactForm').click(function (e) {
+                    e.preventDefault();
+                    $('#contactFrm').slideToggle('hide');
+                    $('#open').show();
+                });
+                jQuery("#sendemail").submit(function (e) {
+                    e.preventDefault();
+                    var note = document.getElementById("note").value;
+                    var name = document.getElementById("name").value;
+                    if (name == "") {
+                        alert("Please Enter Name");
+                        jQuery("#name").focus();
+                        return;
+                    }
+                    var email = document.getElementById("email").value;
+                    PAEmail_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    if (email == "") {
+                        alert("Please Enter The Email Id");
+                        jQuery("#email").focus();
+                        return;
+                    }
+                    else if (!PAEmail_regex.test(email)) {
+                        alert("Please Enter Valid Email Id");
+                        jQuery("#email").focus();
+                        return false;
+                    }
+                    var phone = document.getElementById("phone").value;
+                    if (isNaN(phone)) {
+                        alert("Please Enter Number only For Phone Number.");
+                        jQuery("#phone").focus();
+                        return;
+                    }
+                    var ur = window.location.href;
+                    var dataString = "name=" + name + "&email=" + email + "&phone=" + phone + "&note=" + note;
+                    document.getElementById('txtHint2').style.display = 'block';
+                    document.getElementById("txtHint1").innerHTML = '<div style="display:block;  text-align:center; width:100%;"><img src="/img/ajax-loader.gif" style="text-align:center;" width="20"></div>';
+                    $.ajax({
+                        type: "POST"
+                        , url: "/homes/contact_form"
+                        , data: dataString
+                        , cache: false
+                        , success: function (data) {
+                            if (data == 1) {
+                                document.getElementById("txtHint1").innerHTML = "Mail sent successfully."
+                                jQuery("#name").val("");
+                                jQuery("#email").val("");
+                                jQuery("#phone").val("");
+                                jQuery('#note').val("");
+                            }
+                        }
+                    });
+                });
+                var userSession = '';
+                if (userSession == '') {
+                    jQuery(".submit-password-button").sendMail();
+                }
+            });
+            jQuery.fn.sendMail = function () {
+                jQuery(this).click(function () {
+                    var email = $('#forgot_email').val();
+                    var error = 0;
+                    var emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+                    var valid = emailReg.test(email);
+                    if (email == '') {
+                        $('#forgotPassword .errorMessage').show();
+                        error++;
+                    }
+                    else {
+                        $('#forgotPassword .errorMessage').hide();
+                    }
+                    if (valid == false) {
+                        $('#forgotPassword .errorMessage').html('Please enter valid email address.');
+                        $('#forgotPassword  .errorMessage').show();
+                        error++;
+                    }
+                    else {
+                        $('#forgotPassword  .errorMessage').hide();
+                    }
+                    if (error == 0) {
+                        $('#forgotPassword').hide();
+                        jQuery.ajax({
+                            type: "POST"
+                            , url: "/users/forgot_password"
+                            , data: "email=" + email
+                            , dataType: "html"
+                            , success: function (html) {
+                                if (html == "1") {
+                                    $('#forgot_email').val('');
+                                    $('#backgroundPopup').fadeOut();
+                                    $('#forgotPasswordForm').hide();
+                                    alert('Email has been Sent. Please check your email. ');
+                                }
+                                else {
+                                    $('#forgot_email').val('');
+                                    $("#backgroundPopup").fadeOut();
+                                    $('#forgotPasswordForm').hide();
+                                    alert('Please confirm email. Entered email is not registered.')
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+        <footer class="foo hidden-xs">
+            <!--Container-->
+            <section class="container">
+                <h3 class="foo-logo">
+                <a href="http://suresale.com/#">
+                <img src="./index_files/foo_logo.png" alt="">                </a>
+            </h3>
+                <!--Foo Links Wrapper-->
+                <section class="foolinks-wrap">
+                    <ul class="foo-links">
+                        <li><a href="http://suresale.com/how-suresale-works" alt="How SureSale Works" title="How SureSale Works" class="foolink-head">How it Works</a></li>
+                        <li><a href="http://suresale.com/buyer-plans" alt="Buyers" title="Buyers">Buyers</a></li>
+                        <li><a href="http://suresale.com/seller-plans" alt="Sellers" title="Sellers">Sellers</a></li>
+                        <li><a href="http://suresale.com/dealers" alt="Dealers" title="Dealers">Dealers</a></li>
+                    </ul>
+                    <ul class="foo-links">
+                        <li><span class="foolink-head">About Us</span></li>
+                        <li><a href="https://suresale.com/company-overview">Company</a></li>
+                        <!--<li><a href="https://suresale.com/management-team">Management Team</a></li>-->
+                        <li><a href="https://suresale.com/terms-privacy">Terms &amp; Privacy</a></li>
+                        <li><a href="https://suresale.com/careers">Careers</a></li>
+                    </ul>
+                    <ul class="foo-links">
+                        <li><span class="foolink-head">News Room</span></li>
+                        <li><a target="_blank" href="http://news.suresale.com/">SureSale News</a></li>
+                        <li><a target="_blank" href="http://news.suresale.com/reviews">SureSale Reviews</a></li>
+                        <li><a href="https://suresale.com/pr-inquiries">PR Inquiries</a></li>
+                    </ul>
+                    <!--<ul class="foo-links">
+                    <li><span class="foolink-head">Terms</span></li>
+                    <li><a href="#">Privacy Statement</a></li>
+                    <li><a href="#">Terms + Conditions</a></li>
+                </ul>-->
+                    <ul class="foo-links socialLinks">
+                        <li><span class="foolink-head">Follow SureSale</span></li>
+                        <li><a target="_blank" href="https://www.facebook.com/SureSaleCertified" class="icon-fb">Facebook</a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/company/suresale" class="icon-lnkn">Linked In</a></li>
+                        <li><a target="_blank" href="https://instagram.com/suresale/" class="icon-Igrams">Instagram</a></li>
+                        <li><a target="_blank" href="https://twitter.com/suresale" class="icon-twttr">Twitter</a></li>
+                    </ul>
+                </section>
+                <section style="display: block;" id="open">
+                    <section class="contact_section" style="width:182px;"> Contact SureSale!
+                        <a href="http://suresale.com/#" id="openContactForm"><img src="./index_files/arrow.png" style="float: right; margin-top: 3px;" alt=""></a>
+                    </section>
+                </section>
+                <section id="contactFrm" style="opacity: 0.99; width: 201px; float: right; position: absolute; padding-left: 801px; margin-top: -138px;display:none;">
+                    <section class="contact_section" style="width:182px;"> Contact SureSale!
+                        <a href="http://suresale.com/#" id="closeContactForm"><img src="./index_files/arrow.png" style="float: right; margin-top: 3px;" alt=""></a>
+                    </section>
+                    <section style="background-color:#fff; float: left; padding: 9px; width: 183px;"> Leave us a message and we'll get back to you shortly. Cannot wait? reach us at +888-630-3289
+                        <section style="margin-top:10px;">
+                            <form action="http://suresale.com/users/sendemail" id="sendemail" method="post" accept-charset="utf-8">
+                                <div style="display:none;">
+                                    <input type="hidden" name="_method" value="POST">
+                                </div>
+                                <ul class="loginform">
+                                    <li>
+                                        <section class="formfield">
+                                            <input name="data[User][name]" class="contactField" id="name" placeholder="Name" maxlength="255" type="text"> </section>
+                                    </li>
+                                    <li>
+                                        <section class="formfield">
+                                            <input name="data[User][email]" class="contactField" id="email" placeholder="Email" type="text"> </section>
+                                    </li>
+                                    <li>
+                                        <section class="formfield">
+                                            <input name="data[User][phone]" class="contactField" id="phone" placeholder="Phone" type="text"> </section>
+                                    </li>
+                                    <li>
+                                        <section class="formfield">
+                                            <textarea name="data[User][note]" class="contactField" id="note" placeholder="Leave a note, to jump start our conversation." cols="30" rows="6"></textarea>
+                                        </section>
+                                    </li>
+                                    <li>
+                                        <div class="c_row" id="txtHint2" style="color: green; font-weight: bold; width: 134px; float: left; display:hidden;">
+                                            <div class="success">
+                                                <div id="txtHint1"></div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn" style="float: right; background-color: green; border-radius: 5px; color: #fff; border: 0px none; font-weight: bold;" value="Send"> </li>
+                                </ul>
+                            </form>
+                        </section>
+                    </section>
+                </section>
+                <!--./Foo Links  Wrapper-->
+            </section>
+            <!--./Container-->
+            <!--CopyRight-->
+            <section class="copyright">
+                <!--Container-->
+                <section class="container">
+                    <div class="databy">Data Provided By <img src="./index_files/edmunds-logo.png" alt=""> </div>
+                    <div class="cr-nfo">Copyright © SureSale 2017 All rights Reserved <b>Questions? 888-630-3289</b></div>
+                </section>
+                <!--./Container-->
+            </section>
+            <!--./CopyRight-->
+        </footer>
+        <footer class="foo visible-xs text-center">
+            <!--Container-->
+            <section class="container">
+                <h3 class="">
+                <a href="http://suresale.com/#">
+                <img src="./index_files/logo.png" alt="">                </a>
+            </h3>
+            </section>
+            <!--./Container-->
+        </footer>
+        <section class="hidden-xs" style="float: right; margin-top: -407px; width: 201px; display: none; opacity: 0.99; padding-right: 192px;" id="contactFrm">
+            <section class="contact_section" style="width:182px;"> Contact SureSale!
+                <a href="http://suresale.com/#" id="closeContactForm"><img src="./index_files/arrow.png" style="float: right; margin-top: 3px;" alt=""></a>
+            </section>
+            <section style="background-color:#fff; float: left; padding: 9px; "> Leave us a message and we'll get back to you shortly. Cannot wait? reach us at +866-555-1212
+                <section style="margin-top:10px;">
+                    <form action="http://suresale.com/users/sendemail" id="sendemail" method="post" accept-charset="utf-8">
+                        <div style="display:none;">
+                            <input type="hidden" name="_method" value="POST">
+                        </div>
+                        <ul class="loginform">
+                            <li>
+                                <section class="formfield">
+                                    <input name="data[User][name]" class="contactField" id="name" placeholder="Name" maxlength="255" type="text"> </section>
+                            </li>
+                            <li>
+                                <section class="formfield">
+                                    <input name="data[User][email]" class="contactField" id="email" placeholder="Email" type="text"> </section>
+                            </li>
+                            <li>
+                                <section class="formfield">
+                                    <input name="data[User][phone]" class="contactField" id="phone" placeholder="Phone" type="text"> </section>
+                            </li>
+                            <li>
+                                <section class="formfield">
+                                    <textarea name="data[User][note]" class="contactField" id="note" placeholder="Leave a note, to jump start our conversation." cols="30" rows="6"></textarea>
+                                </section>
+                            </li>
+                            <li>
+                                <div class="c_row" id="txtHint2" style="color: green; font-weight: bold; width: 134px; float: left; display:hidden;">
+                                    <div class="success">
+                                        <div id="txtHint1"></div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn" style="float: right; background-color: green; border-radius: 5px; color: #fff; border: 0px none; font-weight: bold;" value="Send"> </li>
+                        </ul>
+                    </form>
+                </section>
+            </section>
+        </section>
+        <style type="text/css">
+            .popup-widget {
+                background: none repeat scroll 0 0 #fff;
+                border-radius: 8px;
+                color: #06375b;
+                left: 50%;
+                margin-left: -160px;
+                padding: 10px;
+                position: absolute;
+                top: 40%;
+                width: 400px;
+                z-index: 9999999;
+            }
+            
+            div.close {
+                background: url("../img/fancybox/fancy_close.png") no-repeat scroll 0 0 transparent;
+                cursor: pointer;
+                height: 30px;
+                position: absolute;
+                right: -18px;
+                top: -14px;
+                width: 30px;
+            }
+            
+            #backgroundPopup {
+                background: none repeat scroll 0 0 #000000;
+                display: none;
+                height: 100%;
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                opacity: 0.7;
+                z-index: 2;
+            }
+        </style>
+        <!--./Footer-->
+    </section>
+    <!--./Wrapper-->
+    <div id="forgotPassword" class="viewads" style="width:515px; height:360px;display:none;">
+        <a href="http://suresale.com/#" class="pop-close"></a>
+        <h2>Account Login</h2>
+        <div class="suresale-dude"> <img src="./index_files/suresale_dude.png" alt="">
+            <h3 style="font-size: 33px; color: #B92228; padding-top: 20px; padding-left: 301px;">Forgot your<br>Password?</h3>
+            <p style="padding-top:30px;">Please enter your email address and we will send it to you. <span style="font-weight:bold;">Thank You.</span>
+                <input type="text" class="forgotfield" tabindex="1" id="forgot_email" placeholder="email address" name="data[email]"> <span class="errorMessage" style="display: none;font-size:15px;">Please enter valid email address.</span> <a style="background-color:#65AB52;border-radius: 5px; font-weight: bold; float: right; margin-right: 23px; padding: 2px 7px; margin-top: 0px;" class="submit-password-button" href="http://suresale.com/#">SAVE</a> </p>
+        </div>
+    </div>
+    <section id="backgroundPopup" class="overlay-popup" style="display: none; opacity: 0.7;"></section>
+    <style type="text/css">
+        .popup-widget {
+            background: none repeat scroll 0 0 #fff;
+            border-radius: 8px;
+            color: #06375b;
+            left: 50%;
+            margin-left: -160px;
+            padding: 10px;
+            position: absolute;
+            top: 40%;
+            width: 400px;
+            z-index: 9999999;
+        }
+        
+        div.close {
+            background: url("../img/fancybox/fancy_close.png") no-repeat scroll 0 0 transparent;
+            cursor: pointer;
+            height: 30px;
+            position: absolute;
+            right: -18px;
+            top: -14px;
+            width: 30px;
+        }
+        
+        #backgroundPopup {
+            background: none repeat scroll 0 0 #000000;
+            display: none;
+            height: 100%;
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            opacity: 0.7;
+        }
+        
+        #forgotPassword input {
+            color: #000000;
+            height: 28px;
+            line-height: 28px;
+            margin-bottom: 15px;
+            margin-top: 20px;
+            padding: 0 5px;
+            width: 90%;
+        }
+        
+        .submit-password-button {
+            background: none repeat scroll 0 0 #b04320;
+            border: 2px solid #ffffff !important;
+            color: #ffffff;
+            cursor: pointer;
+            height: 38px;
+            line-height: 33px;
+            margin: 8px 0 0 8px;
+            overflow: visible;
+            padding: 4px;
+            text-align: center;
+            width: 83px;
+        }
+        
+        .errorMessage {
+            color: red;
+        }
+        
+        .viewads {
+            background-color: #fff;
+            border: 3px solid #0f2c54;
+            border-radius: 10px;
+            color: #4d4d4d;
+            display: none;
+            font-size: 19px;
+            height: 430px;
+            left: 50%;
+            margin: -215px 0 0 -245px;
+            position: fixed;
+            top: 50%;
+            width: 490px;
+            z-index: 999;
+        }
+        
+        .viewads .pop-close {
+            background: url("/img/pop_close.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+            height: 42px;
+            position: absolute;
+            right: -21px;
+            top: -21px;
+            width: 42px;
+        }
+        
+        .viewads h2 {
+            background: none repeat scroll 0 0 #0f2c54;
+            color: #fff;
+            font-size: 21px;
+            line-height: 48px;
+            text-align: center;
+            text-indent: 100px;
+        }
+        
+        .suresale-dude {
+            position: relative;
+        }
+        
+        .suresale-dude img {
+            left: 15px;
+            position: absolute;
+            top: -40px;
+        }
+        
+        .suresale-dude p {
+            padding-left: 140px;
+            padding-top: 130px;
+        }
+    </style>
+    <!--./Main Popups-->
+    <!--Overlay-->
+    <div class="overlay-pop" style="display: none; height: 2843px;"></div>
+    <script type="text/javascript">
+        var search_qury = '';
+        var page = '';
+        if (search_qury != '' && page == 1) {
+            var pageurl = document.location.href + '/' + '';
+            //window.history.pushState({path:pageurl},'',pageurl);
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="./index_files/jqtransform.css">
+    <script type="text/javascript" src="./index_files/jquery.jqtransform.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./index_files/galleriffic-2.css">
+    <script type="text/javascript" src="./index_files/jquery.galleriffic.js.download"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('.custForm').jqTransform();
+            jQuery('#SearchSortby').change(function () {
+                alert("dddd");
+                var sortby = jQuery(this).val();
+                jQuery('#SearchOrderby').val(sortby);
+                jQuery('#SearchIndexForm').submit();
+            });
+            $(".sortSelectWrap div.jqTransformSelectWrapper ul li a").click(function () {
+                var sortby = $(this).parent().text();
+                jQuery('#SearchOrderby').val(sortby);
+                jQuery('#SearchIndexForm').submit();
+            });
+            $('.thumb-gllry > li:nth-child(4n)').css('padding-right', '0');
+            $('ul.thumbs li:nth-child(4n)').css('margin-right', '0');
+            // Tabs
+            $(".tabs-menu p").click(function (event) {
+                //alert(event);
+                event.preventDefault();
+                $(this).parent().addClass("current");
+                $(this).parent().siblings().removeClass("current");
+                var tab = $(this).attr("href"); //alert(tab);
+                $(".tab-content").not(tab).css("display", "none");
+                $(tab).fadeIn();
+            });
+            $('.overlay-pop').css('height', $(document).height());
+            $('.pop-close1').bind('click', function () {
+                $('.sureSale-modal, .overlay-pop').hide();
+            });
+            $('div.navigation').css({
+                'width': '300px'
+                , 'float': 'left'
+            });
+            $('div.content').css('display', 'block');
+            // Initialize Advanced Galleriffic Gallery
+            /*var gallery = $('#thumbs').galleriffic({
+            	delay:                     2500,
+            	numThumbs:                 8,
+            	preloadAhead:              10,
+            	enableTopPager:            false,
+            	enableBottomPager:         true,
+            	maxPagesToShow:            7,
+            	imageContainerSel:         '#slideshow',
+            	controlsContainerSel:      '#controls',
+            	captionContainerSel:       '#caption',
+            	loadingContainerSel:       '#loading',
+            	renderSSControls:          false,
+            	renderNavControls:         false,
+            	playLinkText:              'Play Slideshow',
+            	pauseLinkText:             'Pause Slideshow',
+            	prevLinkText:              '&lsaquo; Previous Photo',
+            	nextLinkText:              'Next Photo &rsaquo;',
+            	nextPageLinkText:          '&rsaquo; Next',
+            	prevPageLinkText:          'Prev &lsaquo;',
+            	enableHistory:             true,
+            	autoStart:                 false,
+            	syncTransitions:           true,
+            	defaultTransitionDuration: 900
+            });
+		
+            var gallery = $('.thumbs-pop').galleriffic({
+            	delay:                     2500,
+            	numThumbs:                 8,
+            	preloadAhead:              10,
+            	enableTopPager:            false,
+            	enableBottomPager:         true,
+            	maxPagesToShow:            7,
+            	imageContainerSel:         '#slideshow',
+            	controlsContainerSel:      '#controls',
+            	captionContainerSel:       '#caption',
+            	loadingContainerSel:       '#loading',
+            	renderSSControls:          false,
+            	renderNavControls:         false,
+            	playLinkText:              'Play Slideshow',
+            	pauseLinkText:             'Pause Slideshow',
+            	prevLinkText:              '&lsaquo; Previous Photo',
+            	nextLinkText:              'Next Photo &rsaquo;',
+            	nextPageLinkText:          '&rsaquo; Next',
+            	prevPageLinkText:          'Prev &lsaquo;',
+            	enableHistory:             true,
+            	autoStart:                 false,
+            	syncTransitions:           true,
+            	defaultTransitionDuration: 900
+            });*/
+            //make
+            /*jQuery('.make_more').click(function(){
+            	jQuery('.make_hidden').show();
+            	jQuery('.make_more').hide();
+            	jQuery(this).parent('li').hide();
+            });*/
+            jQuery('.make_expand, .make_more').toggle(function () {
+                jQuery('.make_hidden').show();
+                jQuery('.make_more').hide();
+                jQuery('.make_more').parent('li').hide();
+            }, function () {
+                jQuery('.make_hidden').hide();
+                jQuery('.make_more').show();
+                jQuery('.make_more').parent('li').show();
+            });
+            jQuery('.make_click').click(function () {
+                //clear_all_fields();
+                var make = jQuery(this).attr('for');
+                jQuery('#SearchMake').val(make);
+                jQuery('#SearchIndexForm').submit();
+            });
+            //year
+            jQuery('.year_expand, .year_more').toggle(function () {
+                jQuery('.year_hidden').show();
+                jQuery('.year_more').hide();
+                jQuery('.year_more').parent('li').hide();
+            }, function () {
+                jQuery('.year_hidden').hide();
+                jQuery('.year_more').show();
+                jQuery('.year_more').parent('li').show();
+            });
+            jQuery('.year_click').click(function () {
+                //clear_all_fields();
+                var year = jQuery(this).attr('for');
+                jQuery('#SearchYearMin').val(year);
+                jQuery('#SearchYearMax').val(year);
+                jQuery('#SearchIndexForm').submit();
+            });
+            jQuery('.model_expand, .model_more').toggle(function () {
+                jQuery('.model_hidden').show();
+                jQuery('.model_more').hide();
+                jQuery('.model_more').parent('li').hide();
+            }, function () {
+                jQuery('.model_hidden').hide();
+                jQuery('.model_more').show();
+                jQuery('.model_more').parent('li').show();
+            });
+            jQuery('.model_click').click(function () {
+                //clear_all_fields();
+                var model = jQuery(this).attr('for');
+                jQuery('#SearchModel').val(model);
+                jQuery('#SearchIndexForm').submit();
+            });
+            jQuery(".quick-view1").click(function () {
+                var forparam = jQuery(this).attr('for'); //alert(forparam);
+                jQuery("#tab-1-" + forparam).css("display", "block");
+                jQuery("#sureSale-modal-" + forparam).css("display", "block");
+                //document.location.href="http://suresale.com/search#";
+                jQuery(".overlay-pop").css("display", "block");
+            });
+        });
+
+        function clear_all_fields() {
+            jQuery('#SearchIndexForm').attr('action', '/index')
+            jQuery('#SearchMake').val("");
+            jQuery('#SearchType').val("");
+            jQuery('#SearchYearMin').val("");
+            jQuery('#SearchYearMax').val("");
+            jQuery('#SearchPriceMin').val("");
+            jQuery('#SearchPriceMax').val("");
+            jQuery('#SearchMileageMin').val("");
+            jQuery('#SearchMileageMax').val("");
+            jQuery('#SearchZipcode').val("");
+            jQuery('#SearchDistance').val("");
+            jQuery('#SearchModel').val("");
+        }
+
+        function send_mail(vehicle_id) {
+            var cname = document.getElementById("cname_" + vehicle_id).value;
+            if (cname == "") {
+                alert("Please Enter The Name");
+                jQuery('#cname_' + vehicle_id).focus();
+                return;
+            }
+            var cemail = document.getElementById("email_" + vehicle_id).value;
+            PAEmail_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (cemail == "") {
+                alert("Please Enter The Email Id");
+                jQuery('#email_' + vehicle_id).focus();
+                return;
+            }
+            else if (!PAEmail_regex.test(cemail)) {
+                alert("Please Enter Valid Email Id");
+                jQuery("#email_" + vehicle_id).focus();
+                return false;
+            }
+            var cphone = document.getElementById("phone_" + vehicle_id).value;
+            if (isNaN(cphone)) {
+                alert("Please Enter Number only For Phone Number.");
+                jQuery("#phone_" + vehicle_id).focus();
+                return;
+            }
+            var ccomment = document.getElementById("comment_" + vehicle_id).value;
+            //var clistid=document.getElementById("clistid").value; 
+            var ur = window.location.href;
+            var xmlhttp;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("txtHint2_" + vehicle_id).innerHTML = xmlhttp.responseText;
+                    /*setTimeout(function() {	
+                      document.getElementById('light').style.display='none';
+                      document.getElementById('fade').style.display='none';	
+                      document.getElementById("txtHint").innerHTML="";
+                      //window.location.replace("http://tradenetautos.com/related.php?year=2008&make=GMC&model=Acadia SLT");
+                    }, 500);*/
+                }
+                else {
+                    document.getElementById("txtHint2_" + vehicle_id).innerHTML = '<div style="display:block; text-align:center; width:100%;"><img src="/img/ajax-loader.gif" style="width: 20px; text-align: right;"></div>';
+                }
+            }
+            xmlhttp.open("GET", "/search/sentmail/?cname=" + cname + "&cemail=" + cemail + "&cphone=" + cphone + "&ccomment=" + ccomment + "&ur=" + ur, true);
+            xmlhttp.send();
+        }
+    </script>
+</body>
+
+</html>
